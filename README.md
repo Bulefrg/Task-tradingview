@@ -1,45 +1,67 @@
-ей репозиторій містить клас TradingChart, який дозволяє створювати та візуалізувати торговий графік з використанням фінансових даних. Графік включає свічки, зелені та червоні блоки замовлень (Order Blocks), а також лінії Breakout Swing (BOS). Клас використовує бібліотеки pandas, plotly, та yfinance.
-
-Встановлення
-Для використання цього класу потрібно встановити необхідні бібліотеки. Використовуйте команди:
-
-bash
+README.md
+markdown
 Copy code
-pip install pandas
-pip install plotly
-pip install yfinance
+# Графік торгів з блоками ордерів
+
+Цей Python скрипт надає клас TradingChart для візуалізації даних з акціями із використанням блоців ордерів за допомогою бібліотеки Plotly.
+
+## Встановлення
+
+1. Встановіть необхідні пакети за допомогою наступної команди:
+
+```bash
+pip install -r requirements.txt
 Використання
-Простий приклад використання класу TradingChart:
-
 python
 Copy code
-import pandas as pd
-import plotly.graph_objects as go
-import yfinance as yf
+# Приклад використання:
+from trading_chart import TradingChart
 
-# Ваші налаштування для stock_symbol, start_date, end_date
-
-trading_chart = TradingChart(stock_symbol, start_date, end_date)
-trading_chart.plot_chart()
-Параметри класу TradingChart
-stock_symbol: Символ фінансового інструменту (наприклад, 'AAPL').
-start_date: Початкова дата аналізу графіка у форматі 'YYYY-MM-DD'.
-end_date: Кінцева дата аналізу графіка у форматі 'YYYY-MM-DD'.
-range_value (за замовчуванням 15): Значення для аналізу структур низьких цін.
-show_pd (за замовчуванням False): Відображати рівні PDH та PDL на графіку.
-show_bearish_bos (за замовчуванням False): Відображати лінії BOS для bearish тенденцій.
-show_bullish_bos (за замовчуванням False): Відображати лінії BOS для bullish тенденцій.
-Інші параметри: Кольори та стилі для різних елементів графіку.
-Методи класу TradingChart
-plot_chart(): Відображає торговий графік з врахуванням усіх вказаних параметрів.
-Приклад використання
-python
-Copy code
 stock_symbol = 'AAPL'
 start_date = '2023-06-03'
 end_date = '2023-08-8'
 
 trading_chart = TradingChart(stock_symbol, start_date, end_date)
 trading_chart.plot_chart()
-Додаткова інформація
-Цей проект є частиною відбору на стажування в компанії Daitex. Він використовує бібліотеки та технічні підходи, які широко використовуються в реальному світі розробки торгових роботів та фінансового аналізу на мові програмування Python.
+Клас: TradingChart
+Методи
+__init__(self, stock_symbol: str, start_date: str, end_date: str, range_value: int = 15, show_pd: bool = False, ...) -> None:
+Ініціалізує об'єкт TradingChart.
+
+stock_symbol: Символ акції (наприклад, 'AAPL').
+start_date: Початкова дата для отримання даних про акцію у форматі 'YYYY-MM-DD'.
+end_date: Кінцева дата для отримання даних про акцію у форматі 'YYYY-MM-DD'.
+range_value: Значення для розрахунків (за замовчуванням - 15).
+show_pd: Логічне значення для відображення чи приховання PD ліній на графіку (за замовчуванням - False).
+... (інші параметри)
+structure_low_index_pointer(self, data: pd.DataFrame, length: int) -> Optional[pd.Timestamp]:
+Розраховує та повертає індекс найменшої точки структури.
+
+data: Pandas DataFrame з даними про акцію.
+length: Довжина вікна для розрахунку мінімуму.
+add_long_box(self, box: Tuple[float, float, float, float]) -> None:
+Додає довгий блок на графік.
+
+box: Кортеж, який представляє координати блока (x0, x1, y0, y1).
+add_short_box(self, box: Tuple[float, float, float, float]) -> None:
+Додає короткий блок на графік.
+
+box: Кортеж, який представляє координати блока (x0, x1, y0, y1).
+add_bos_line(self, line: Tuple[float, float, float, float], color: str) -> None:
+Додає лінію Buy/Sell (BOS) на графік.
+
+line: Кортеж, який представляє координати лінії (x0, x1, y0, y1).
+color: Колір лінії.
+plot_chart(self) -> None:
+Виводить графік торгів з блоками ордерів за допомогою Plotly.
+
+Приклад Використання
+python
+Copy code
+# Приклад використання:
+stock_symbol = 'AAPL'
+start_date = '2023-06-03'
+end_date = '2023-08-8'
+
+trading_chart = TradingChart(stock_symbol, start_date, end_date)
+trading_chart.plot_chart()
