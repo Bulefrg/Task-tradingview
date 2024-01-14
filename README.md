@@ -1,0 +1,2 @@
+# Task-tradingview
+Конкурсне завдання
