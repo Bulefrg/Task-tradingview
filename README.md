@@ -15,7 +15,7 @@ Copy code
 # Приклад використання:
 from trading_chart import TradingChart
 
-stock_symbol = 'AAPL'
+stock_symbol = 'BTC-USD'
 start_date = '2023-06-03'
 end_date = '2023-08-8'
 
@@ -26,7 +26,7 @@ trading_chart.plot_chart()
 __init__(self, stock_symbol: str, start_date: str, end_date: str, range_value: int = 15, show_pd: bool = False, ...) -> None:
 Ініціалізує об'єкт TradingChart.
 
-stock_symbol: Символ акції (наприклад, 'AAPL').
+stock_symbol: Символ акції (наприклад, 'BTC-USD').
 start_date: Початкова дата для отримання даних про акцію у форматі 'YYYY-MM-DD'.
 end_date: Кінцева дата для отримання даних про акцію у форматі 'YYYY-MM-DD'.
 range_value: Значення для розрахунків (за замовчуванням - 15).
@@ -56,7 +56,7 @@ plot_chart(self) -> None:
 Приклад Використання
 
 # Приклад використання:
-stock_symbol = 'AAPL'
+stock_symbol = 'BTC-USD'
 start_date = '2023-06-03'
 end_date = '2023-08-8'
 
